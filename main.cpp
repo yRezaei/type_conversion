@@ -1,7 +1,7 @@
 #include <iostream>
 #include "time_it.hpp"
 #include <boost/lexical_cast.hpp>
-#include "conversion.hpp"
+#include "type_conversion.hpp"
 
 auto timeFuncInvocation =
     [](auto &&func, auto &&...params)
@@ -57,7 +57,7 @@ void boost_lexical_cast_char()
     TimeIt t(__FUNCTION__, 100000);
     t.start();
     for (auto i = 0u; i < 100000; ++i)
-        boost::lexical_cast<int>("654");
+        boost::lexical_cast<int>(std::string{"654"});
     t.stop();
 }
 void std_convert_char()
@@ -65,7 +65,7 @@ void std_convert_char()
     TimeIt t(__FUNCTION__, 100000);
     t.start();
     for (auto i = 0u; i < 100000; ++i)
-        convert::to<int>("654");
+        convert::to<int>(std::string{"654"});
     t.stop();
 }
 
