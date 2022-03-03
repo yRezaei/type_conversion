@@ -1,6 +1,6 @@
 # Project
-A set of function to convertor basice types
-The driving is to have one to one or approximate verion of boost:lexical_cast in standard library
+A header only templated functions to convertor basice types to/from std::string
+The purpose of this project is to provide boost:lexical_cast like functionality, using C++ standard functions such as std::stoi, stof, stoul, std::to_string, etc.
 
 # Requirment
 * Boost::format is required for test case
