@@ -1,0 +1,5 @@
+
+Todo:
+   ☐ Add to/from "char const*" conversion
+   ☐ Add gtest from proper testing
+   ☐ Add google benchmark
