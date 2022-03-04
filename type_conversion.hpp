@@ -1,5 +1,5 @@
-#ifndef D8871FD6_5FDA_4344_96B3_1ACA566E3C68
-#define D8871FD6_5FDA_4344_96B3_1ACA566E3C68
+#ifndef F829904E_F0F8_4832_98A1_1E614847C8E0
+#define F829904E_F0F8_4832_98A1_1E614847C8E0
 
 #include <cstdlib>
 #include <string>
@@ -23,7 +23,7 @@ inline std::string to(std::int16_t value) {
 };
 
 template <>
-inline std::string to(int value) {
+inline std::string to(std::int32_t value) {
   return std::to_string(value);
 };
 
@@ -33,7 +33,7 @@ inline std::string to(long value) {
 };
 
 template <>
-inline std::string to(long long value) {
+inline std::string to(std::in64_t value) {
   return std::to_string(value);
 };
 
@@ -43,7 +43,7 @@ inline std::string to(std::uint16_t value) {
 };
 
 template <>
-inline std::string to(unsigned int value) {
+inline std::string to(std::uint32_t value) {
   return std::to_string(value);
 };
 
@@ -53,7 +53,7 @@ inline std::string to(unsigned long value) {
 };
 
 template <>
-inline std::string to(unsigned long long value) {
+inline std::string to(std::uint64_t value) {
   return std::to_string(value);
 };
 
@@ -80,11 +80,11 @@ inline bool to(std::string const& value) {
 };
 
 template <>
-inline int to(std::string const& value) {
+inline std::int32_t to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stoi(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent an int!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an int!");
   return num;
 };
 
@@ -93,26 +93,26 @@ inline long to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stol(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a long!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long!");
   return num;
 };
 
 template <>
-inline long long to(std::string const& value) {
+inline std::uint64_t to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stoll(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a long long!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long long!");
   return num;
 };
 
 template <>
-inline unsigned int to(std::string const& value) {
+inline std::uint32_t to(std::string const& value) {
   std::size_t pos{};
   unsigned long numl = stoul(value, &pos, 10);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent an unsigned int!");
-  auto num = static_cast<unsigned int>(numl);
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned int!");
+  auto num = static_cast<std::uint32_t>(numl);
   if (num != numl) throw std::out_of_range("The given string can not be converted to unsigned int.");
   return num;
 };
@@ -122,16 +122,16 @@ inline unsigned long to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stoul(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent an unsigned long!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned long!");
   return num;
 };
 
 template <>
-inline unsigned long long to(std::string const& value) {
+inline std::uint64_t to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stoull(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value +
+    throw std::invalid_argument(std::string("The given string \"") + value +
                                 "\" doesn't represent an unsigned long long!");
   return num;
 };
@@ -141,7 +141,7 @@ inline float to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stof(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a float!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a float!");
   return num;
 };
 
@@ -150,7 +150,7 @@ inline double to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stod(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a double!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a double!");
   return num;
 };
 
@@ -159,7 +159,7 @@ inline long double to(std::string const& value) {
   std::size_t pos{};
   auto num = std::stold(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a long double!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long double!");
   return num;
 };
 
@@ -171,11 +171,11 @@ inline bool to(std::string value) {
 };
 
 template <>
-inline int to(std::string value) {
+inline std::int32_t to(std::string value) {
   std::size_t pos{};
   auto num = std::stoi(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent an int!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an int!");
   return num;
 };
 
@@ -184,26 +184,26 @@ inline long to(std::string value) {
   std::size_t pos{};
   auto num = std::stol(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a long!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long!");
   return num;
 };
 
 template <>
-inline long long to(std::string value) {
+inline std::int64_t to(std::string value) {
   std::size_t pos{};
   auto num = std::stoll(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a long long!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long long!");
   return num;
 };
 
 template <>
-inline unsigned int to(std::string value) {
+inline std::uint32_t to(std::string value) {
   std::size_t pos{};
   unsigned long numl = stoul(value, &pos, 10);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent an unsigned int!");
-  auto num = static_cast<unsigned int>(numl);
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned int!");
+  auto num = static_cast<std::uint32_t>(numl);
   if (num != numl) throw std::out_of_range("The given string can not be converted to unsigned int.");
   return num;
 };
@@ -213,16 +213,16 @@ inline unsigned long to(std::string value) {
   std::size_t pos{};
   auto num = std::stoul(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent an unsigned long!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned long!");
   return num;
 };
 
 template <>
-inline unsigned long long to(std::string value) {
+inline std::uint64_t to(std::string value) {
   std::size_t pos{};
   auto num = std::stoull(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value +
+    throw std::invalid_argument(std::string("The given string \"") + value +
                                 "\" doesn't represent an unsigned long long!");
   return num;
 };
@@ -232,7 +232,7 @@ inline float to(std::string value) {
   std::size_t pos{};
   auto num = std::stof(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a float!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a float!");
   return num;
 };
 
@@ -241,7 +241,7 @@ inline double to(std::string value) {
   std::size_t pos{};
   auto num = std::stod(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a double!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a double!");
   return num;
 };
 
@@ -250,9 +250,9 @@ inline long double to(std::string value) {
   std::size_t pos{};
   auto num = std::stold(value, &pos);
   if (value.size() != pos)
-    throw std::invalid_argument(std::string("The given string\"") + value + "\" doesn't represent a long double!");
+    throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long double!");
   return num;
 };
 }  // namespace convert
 
-#endif /* D8871FD6_5FDA_4344_96B3_1ACA566E3C68 */
+#endif /* F829904E_F0F8_4832_98A1_1E614847C8E0 */
