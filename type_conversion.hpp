@@ -9,11 +9,13 @@
 
 /*
 Description:    A Header only templated functions to convert basic types to and from std::string
-Author:         Yashar Abbasalizadeh Rezaei
-Email:          yashar.rezaei@atlascopco.com
+Author:         Yashar A. Rezaei
+Date:           15.02.2022
 */
+
 namespace convert
 {
+
     template <typename T_return, typename T_arg>
     T_return to(T_arg value) = delete;
 
@@ -31,13 +33,7 @@ namespace convert
     };
 
     template <>
-    inline std::string to(long value)
-    {
-        return std::to_string(value);
-    };
-
-    template <>
-    inline std::string to(std::in64_t value)
+    inline std::string to(std::int64_t value)
     {
         return std::to_string(value);
     };
@@ -50,12 +46,6 @@ namespace convert
 
     template <>
     inline std::string to(std::uint32_t value)
-    {
-        return std::to_string(value);
-    };
-
-    template <>
-    inline std::string to(unsigned long value)
     {
         return std::to_string(value);
     };
@@ -123,17 +113,7 @@ namespace convert
     };
 
     template <>
-    inline long to(std::string const &value)
-    {
-        std::size_t pos{};
-        auto num = std::stol(value, &pos);
-        if (value.size() != pos)
-            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long!");
-        return num;
-    };
-
-    template <>
-    inline std::uint64_t to(std::string const &value)
+    inline std::int64_t to(std::string const &value)
     {
         std::size_t pos{};
         auto num = std::stoll(value, &pos);
@@ -152,16 +132,6 @@ namespace convert
         auto num = static_cast<std::uint32_t>(numl);
         if (num != numl)
             throw std::out_of_range("The given string can not be converted to unsigned int.");
-        return num;
-    };
-
-    template <>
-    inline unsigned long to(std::string const &value)
-    {
-        std::size_t pos{};
-        auto num = std::stoul(value, &pos);
-        if (value.size() != pos)
-            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned long!");
         return num;
     };
 
@@ -235,22 +205,25 @@ namespace convert
     };
 
     template <>
-    inline std::int32_t to(std::string value)
+    inline std::int16_t to(std::string value)
     {
         std::size_t pos{};
-        auto num = std::stoi(value, &pos);
+        auto numi = stoi(value, &pos, 10);
         if (value.size() != pos)
-            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an int!");
+            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a short!");
+        auto num = static_cast<std::int16_t>(numi);
+        if (num != numi)
+            throw std::out_of_range("The given string can not be converted to unsigned int.");
         return num;
     };
 
     template <>
-    inline long to(std::string value)
+    inline std::int32_t to(std::string value)
     {
         std::size_t pos{};
-        auto num = std::stol(value, &pos);
+        auto num = stoi(value, &pos, 10);
         if (value.size() != pos)
-            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a long!");
+            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an int!");
         return num;
     };
 
@@ -265,25 +238,28 @@ namespace convert
     };
 
     template <>
-    inline std::uint32_t to(std::string value)
+    inline std::uint16_t to(std::string value)
     {
         std::size_t pos{};
-        unsigned long numl = stoul(value, &pos, 10);
+        auto numl = stoul(value, &pos, 10);
         if (value.size() != pos)
-            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned int!");
-        auto num = static_cast<std::uint32_t>(numl);
+            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent a unsigned short!");
+        auto num = static_cast<std::uint16_t>(numl);
         if (num != numl)
             throw std::out_of_range("The given string can not be converted to unsigned int.");
         return num;
     };
 
     template <>
-    inline unsigned long to(std::string value)
+    inline std::uint32_t to(std::string value)
     {
         std::size_t pos{};
-        auto num = std::stoul(value, &pos);
+        auto numl = stoul(value, &pos, 10);
         if (value.size() != pos)
-            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned long!");
+            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent an unsigned int!");
+        auto num = static_cast<std::uint32_t>(numl);
+        if (num != numl)
+            throw std::out_of_range("The given string can not be converted to unsigned int.");
         return num;
     };
 
