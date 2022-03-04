@@ -52,7 +52,7 @@ void std_convert_float()
     t.stop();
 }
 
-void boost_lexical_cast_char()
+void boost_lexical_cast_string()
 {
     TimeIt t(__FUNCTION__, 100000);
     t.start();
@@ -60,7 +60,7 @@ void boost_lexical_cast_char()
         boost::lexical_cast<int>(std::string{"654"});
     t.stop();
 }
-void std_convert_char()
+void std_convert_string()
 {
     TimeIt t(__FUNCTION__, 100000);
     t.start();
@@ -80,8 +80,8 @@ int main()
         std_convert_float();
     }
     {
-        boost_lexical_cast_char();
-        std_convert_char();
+        boost_lexical_cast_string();
+        std_convert_string();
     }
 
     return 0;
