@@ -21,6 +21,12 @@ namespace convert
 
     // Specialization from numerical to std::string
     template <>
+    inline std::string to(bool value)
+    {
+        return (value ? std::string("1") : std::string("0"));
+    };
+
+    template <>
     inline std::string to(std::int16_t value)
     {
         return std::to_string(static_cast<std::int32_t>(value));
@@ -28,6 +34,12 @@ namespace convert
 
     template <>
     inline std::string to(std::int32_t value)
+    {
+        return std::to_string(value);
+    };
+
+    template <>
+    inline std::string to(long long value)
     {
         return std::to_string(value);
     };
@@ -46,6 +58,12 @@ namespace convert
 
     template <>
     inline std::string to(std::uint32_t value)
+    {
+        return std::to_string(value);
+    };
+
+    template <>
+    inline std::string to(unsigned long long value)
     {
         return std::to_string(value);
     };

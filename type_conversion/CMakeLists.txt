@@ -1,0 +1,2 @@
+add_library(type_conversion INTERFACE)
+target_include_directories(type_conversion INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
