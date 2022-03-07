@@ -3,4 +3,4 @@ Todo:
    ☐ Add to/from "char const*" conversion
    ✔ Add gtest from proper testing @done(22-03-07 00:13)
    ☐ Add google benchmark
-   ☐ correct floating point precision issue
+   ✔ correct floating point precision issue @done(22-03-07 22:37)
