@@ -3,7 +3,8 @@ A header only templated functions to convertor basice types to/from std::string
 The purpose of this project is to provide boost:lexical_cast like functionality, using C++ standard functions such as std::stoi, stof, stoul, std::to_string, etc.
 
 # Requirment
-* Boost::format is required for test case
+* GTest required for testing
+* Boost::format is required for profiling
 * Optionally you could install conan to get boost libs or simply provide the include path to boost::lexical_cast.hpp
 * To install conan package manager simply install it by
 ```
