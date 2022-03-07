@@ -18,3 +18,13 @@ conan install ..
 cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake
 cmake --build . --config Release 
 ```
+
+# Run test
+```
+<project_folder>/build/test/test
+```
+
+# Run profiling
+```
+<project_folder>/build/profiling/profiling
+```
