@@ -29,3 +29,19 @@ cmake --build . --config Release
 ```
 <project_folder>/build/profiling/profiling
 ```
+
+# Benchmark result
+```
+Run on (24 X 3792.88 MHz CPU s)
+CPU Caches:
+  L1 Data 32 KiB (x12)
+  L1 Instruction 32 KiB (x12)
+  L2 Unified 512 KiB (x12)
+  L3 Unified 16384 KiB (x1)
+Load Average: 0.08, 0.02, 0.01
+----------------------------------------------------------------
+Benchmark                      Time             CPU   Iterations
+----------------------------------------------------------------
+BM_Boost_Lexical_Cast        594 ns          594 ns      1151549
+BM_standard_functions        362 ns          362 ns      1936437
+```

@@ -1,88 +1,32 @@
-#include <iostream>
-#include "time_it.hpp"
 #include <boost/lexical_cast.hpp>
-#include "type_conversion.hpp"
+#include <type_conversion.hpp>
+#include <benchmark/benchmark.h>
 
-auto timeFuncInvocation =
-    [](auto &&func, auto &&...params)
-{
-    // get time before function invocation
-    const auto &start = std::chrono::high_resolution_clock::now();
-    // function invocation using perfect forwarding
-    for (auto i = 0; i < 100000 /*largeNumber*/; ++i)
-    {
-        std::forward<decltype(func)>(func)(std::forward<decltype(params)>(params)...);
-    }
-    // get time after function invocation
-    const auto &stop = std::chrono::high_resolution_clock::now();
-    return (stop - start) / 100000 /*largeNumber*/;
-};
+static const int numInt{32136763};
+static const double numDouble{687312.654354};
+static const std::string strInt{"6193248"};
+static const std::string strDouble{"6193248.67612"};
 
-void boost_lexical_cast_int()
-{
-    TimeIt t(__FUNCTION__, 100000);
-    t.start();
-    for (auto i = 0u; i < 100000; ++i)
-        boost::lexical_cast<std::string>(100);
-    t.stop();
-}
-void std_convert_int()
-{
-    TimeIt t(__FUNCTION__, 100000);
-    t.start();
-    for (auto i = 0u; i < 100000; ++i)
-        convert::to<std::string>(100);
-    t.stop();
+static void BM_Boost_Lexical_Cast(benchmark::State& state) {
+  for (auto _ : state) {
+      auto str1 = boost::lexical_cast<std::string>(numInt);
+      auto str2 = boost::lexical_cast<std::string>(numDouble);
+      auto num1 = boost::lexical_cast<int>(strInt);
+      //auto num2 = boost::lexical_cast<int>(strDouble);
+  }
 }
 
-void boost_lexical_cast_float()
-{
-    TimeIt t(__FUNCTION__, 100000);
-    t.start();
-    for (auto i = 0u; i < 100000; ++i)
-        boost::lexical_cast<std::string>(100.01f);
-    t.stop();
-}
-void std_convert_float()
-{
-    TimeIt t(__FUNCTION__, 100000);
-    t.start();
-    for (auto i = 0u; i < 100000; ++i)
-        convert::to<std::string>(100.01f);
-    t.stop();
-}
+BENCHMARK(BM_Boost_Lexical_Cast);
 
-void boost_lexical_cast_string()
-{
-    TimeIt t(__FUNCTION__, 100000);
-    t.start();
-    for (auto i = 0u; i < 100000; ++i)
-        boost::lexical_cast<int>(std::string{"654"});
-    t.stop();
-}
-void std_convert_string()
-{
-    TimeIt t(__FUNCTION__, 100000);
-    t.start();
-    for (auto i = 0u; i < 100000; ++i)
-        convert::to<int>(std::string{"654"});
-    t.stop();
-}
 
-int main()
-{
-    {
-        boost_lexical_cast_int();
-        std_convert_int();
-    }
-    {
-        boost_lexical_cast_float();
-        std_convert_float();
-    }
-    {
-        boost_lexical_cast_string();
-        std_convert_string();
-    }
-
-    return 0;
+static void BM_standard_functions(benchmark::State& state) {
+  for (auto _ : state) {
+      auto str1 = convert::to<std::string>(numInt);
+      auto str2 = convert::to<std::string>(numDouble);
+      auto num1 = convert::to<int>(strInt);
+      //auto num2 = convert::to<int>(strDouble);
+  }
 }
+BENCHMARK(BM_standard_functions);
+
+BENCHMARK_MAIN();

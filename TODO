@@ -2,5 +2,5 @@
 Todo:
    ☐ Add to/from "char const*" conversion
    ✔ Add gtest from proper testing @done(22-03-07 00:13)
-   ☐ Add google benchmark
+   ✔ Add google benchmark @done(22-03-09 00:16)
    ✔ correct floating point precision issue @done(22-03-07 22:37)
