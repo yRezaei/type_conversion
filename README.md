@@ -5,11 +5,12 @@ The purpose of this project is to provide boost:lexical_cast like functionality,
 # Requirment
 * GTest required for testing
 * Boost::format is required for profiling
-* Optionally you could install conan to get boost libs or simply provide the include path to boost::lexical_cast.hpp
-* To install conan package manager simply install it by
+* benchmark required for performance mesaure
+* I used conan to handle thirdparty libs used for test and benchmarking. To install conan run the following command:
 ```
 pip install conan
 ```
+* You could also provide required packages include and lib directory instead of using conan package manager.
 
 # How to build
 Run the following comands in project folder
