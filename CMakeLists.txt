@@ -11,4 +11,4 @@ find_package(benchmark CONFIG REQUIRED)
 
 add_subdirectory(type_conversion)
 add_subdirectory(test)
-add_subdirectory(profiling)
+add_subdirectory(benchmark)

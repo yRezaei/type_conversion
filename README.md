@@ -4,9 +4,9 @@ The purpose of this project is to provide boost:lexical_cast like functionality,
 
 # Requirment
 * GTest required for testing
-* Boost::format is required for profiling
-* benchmark required for performance mesaure
-* I used conan to handle thirdparty libs used for test and benchmarking. To install conan run the following command:
+* Boost::format is required for benchmark
+* Goodle benchmark required for performance mesaure
+* I used conan to handle thirdparty libs used for test and benchmark. To install conan run the following command:
 ```
 pip install conan
 ```
@@ -26,9 +26,9 @@ cmake --build . --config Release
 <project_folder>/build/test/test
 ```
 
-# Run profiling
+# Run benchmark
 ```
-<project_folder>/build/profiling/profiling
+<project_folder>/build/benchmark/benchmark
 ```
 
 # Benchmark result
