@@ -14,32 +14,119 @@ static double num2{};
 static bool bool1{};
 static std::string str3{};
 
-static void BM_Boost_Lexical_Cast(benchmark::State &state)
+
+static void BM_LexicalCast_int_to_string(benchmark::State &state)
 {
   for (auto _ : state)
   {
     str1 = boost::lexical_cast<std::string>(numInt);
-    str2 = boost::lexical_cast<std::string>(numDouble);
-    num1 = boost::lexical_cast<int>(strInt);
-    num2 = boost::lexical_cast<double>(strDouble);
-    bool1 = boost::lexical_cast<bool>("1");
-    str3 = boost::lexical_cast<std::string>(false);
   }
 }
 
-static void BM_standard_functions(benchmark::State &state)
+static void BM_std_int_to_string(benchmark::State &state)
 {
   for (auto _ : state)
   {
     str1 = convert::to<std::string>(numInt);
+  }
+}
+BENCHMARK(BM_LexicalCast_int_to_string);
+BENCHMARK(BM_std_int_to_string);
+
+//########################
+static void BM_LexicalCast_double_to_string(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
+    str2 = boost::lexical_cast<std::string>(numDouble);
+  }
+}
+
+static void BM_std_double_to_string(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
     str2 = convert::to<std::string>(numDouble);
+  }
+}
+BENCHMARK(BM_LexicalCast_double_to_string);
+BENCHMARK(BM_std_double_to_string);
+
+//########################
+static void BM_LexicalCast_string_to_int(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
+    num1 = boost::lexical_cast<int>(strInt);
+  }
+}
+
+static void BM_std_string_to_int(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
     num1 = convert::to<int>(strInt);
+  }
+}
+BENCHMARK(BM_LexicalCast_string_to_int);
+BENCHMARK(BM_std_string_to_int);
+
+//########################
+static void BM_LexicalCast_string_to_double(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
+    num2 = boost::lexical_cast<double>(strDouble);
+  }
+}
+
+static void BM_std_string_to_double(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
     num2 = convert::to<double>(strDouble);
+  }
+}
+BENCHMARK(BM_LexicalCast_string_to_double);
+BENCHMARK(BM_std_string_to_double);
+
+//########################
+static void BM_LexicalCast_string_to_bool(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
+    bool1 = boost::lexical_cast<bool>("1");
+  }
+}
+
+static void BM_std_string_to_bool(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
     bool1 = convert::to<bool>("1");
+
+  }
+}
+BENCHMARK(BM_LexicalCast_string_to_bool);
+BENCHMARK(BM_std_string_to_bool);
+
+//########################
+static void BM_LexicalCast_bool_to_string(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
+    str3 = boost::lexical_cast<std::string>(false);
+  }
+}
+
+static void BM_std_bool_to_string(benchmark::State &state)
+{
+  for (auto _ : state)
+  {
     str3 = convert::to<std::string>(false);
   }
 }
 
-BENCHMARK(BM_Boost_Lexical_Cast);
-BENCHMARK(BM_standard_functions);
+BENCHMARK(BM_LexicalCast_bool_to_string);
+BENCHMARK(BM_std_bool_to_string);
 BENCHMARK_MAIN();
