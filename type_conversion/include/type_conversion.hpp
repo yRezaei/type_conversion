@@ -6,6 +6,9 @@
 #include <stdexcept>
 #include <exception>
 #include <utility>
+#include <cstring>
+
+using namespace std::string_literals;
 
 /*
 Description:    A Header only templated functions to convert basic types to and from std::string
@@ -19,13 +22,43 @@ namespace convert
     template <typename T_return, typename T_arg>
     T_return to(T_arg value) = delete;
 
-    // Specialization from numerical to std::string
     template <>
     inline std::string to(bool value)
     {
         return (value ? std::string("1") : std::string("0"));
     };
 
+    template <>
+    inline bool to(std::string const &value)
+    {
+        if (value.compare("1"s))
+            return true;
+        else if (value.compare("0"s))
+            return false;
+        else if (value.compare("true"s) || value.compare("True"s) || value.compare("TRUE"s))
+            return true;
+        else if (value.compare("false"s) || value.compare("False"s) || value.compare("FALSE"s))
+            return false;
+        else
+            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent any known boolean representation!");
+    };
+
+    template <>
+    inline bool to(char const *value)
+    {
+        if (std::strcmp(value, "1") == 0)
+            return true;
+        else if (std::strcmp(value, "0") == 0)
+            return false;
+        else if (std::strcmp(value, "true") == 0 || std::strcmp(value, "True") == 0 || std::strcmp(value, "TRUE") == 0)
+            return true;
+        else if (std::strcmp(value, "false") == 0 || std::strcmp(value, "False") == 0 || std::strcmp(value, "FALSE") == 0)
+            return false;
+        else
+            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent any known boolean representation!");
+    };
+
+    // Specialization from numerical to std::string
     template <>
     inline std::string to(std::int16_t value)
     {
@@ -93,33 +126,6 @@ namespace convert
     };
 
     // Specialization from std::string const& to numerical
-    template <>
-    inline bool to(std::string const &value)
-    {
-        switch (value.size())
-        {
-        case 1:
-            if (value == "1")
-                return true;
-            else if (value == "0")
-                return false;
-            else
-                throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent any known boolean representation!");
-        case 4:
-            if (value == "True" || value == "TRUE" || value == "true")
-                return true;
-            else
-                throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent any known boolean representation!");
-        case 5:
-            if (value == "False" || value == "FALSE" || value == "FALSE")
-                return false;
-            else
-                throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent any known boolean representation!");
-        default:
-            throw std::invalid_argument(std::string("The given string \"") + value + "\" doesn't represent any known boolean representation!");
-        }
-    };
-
     template <>
     inline std::int32_t to(std::string const &value)
     {
