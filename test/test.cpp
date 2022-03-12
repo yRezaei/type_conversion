@@ -22,24 +22,29 @@ TEST(Convert_to_string, from_integral)
 
 TEST(Convert_to_string, from_floating_point)
 {
+  std::string doubleStr{"654321.654000"};
+
   EXPECT_EQ(std::string("654321.625000"), convert::to<std::string>(654321.654f));
-  EXPECT_EQ(std::string("654321.654000"), convert::to<std::string>(654321.654));
+  EXPECT_EQ(doubleStr, convert::to<std::string>(654321.654));
   EXPECT_EQ(std::string("654321.654000"), convert::to<std::string>(654321.654l));
 }
 
 TEST(Convert_to_bool, from_string)
 {
   std::string falseStr{"FALSE"};
+  std::string trueStr{"TRUE"};
 
   EXPECT_EQ(true, convert::to<bool>("true"));
   EXPECT_EQ(true, convert::to<bool>(std::string("True")));
-  EXPECT_EQ(true, convert::to<bool>(std::string("TRUE")));
+  EXPECT_EQ(true, convert::to<bool>(trueStr));
   EXPECT_EQ(false, convert::to<bool>("false"));
   EXPECT_EQ(false, convert::to<bool>(std::string{"False"}));
   EXPECT_EQ(false, convert::to<bool>(falseStr));
 
   EXPECT_THROW(convert::to<bool>(std::string("FALSEE")), std::invalid_argument);
   EXPECT_THROW(convert::to<bool>("FALSE "), std::invalid_argument);
+  EXPECT_THROW(convert::to<bool>("00"), std::invalid_argument);
+  EXPECT_THROW(convert::to<bool>(" "), std::invalid_argument);
 }
 
 TEST(Convert_to_integral, from_string)
