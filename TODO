@@ -4,3 +4,6 @@ Todo:
    ✔ Add gtest from proper testing @done(22-03-07 00:13)
    ✔ Add google benchmark @done(22-03-09 00:16)
    ✔ correct floating point precision issue @done(22-03-07 22:37)
+   ☐ Handel error case in strtol, strtoll, strtof, strtol, strtold
+   ☐ Add more test on remaining functions
+   ☐ Add limitation section to README file
