@@ -7,3 +7,4 @@ Todo:
    ☐ Handel error case in strtol, strtoll, strtof, strtol, strtold
    ☐ Add more test on remaining functions
    ☐ Add limitation section to README file
+   ☐ Check for standard version and make use of available new functions
