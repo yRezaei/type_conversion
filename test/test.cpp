@@ -29,13 +29,15 @@ TEST(Convert_to_string, from_floating_point)
 
 TEST(Convert_to_bool, from_string)
 {
+  std::string falseStr{"FALSE"};
+
   EXPECT_EQ(true, convert::to<bool>("true"));
   EXPECT_EQ(true, convert::to<bool>(std::string("True")));
   EXPECT_EQ(true, convert::to<bool>(std::string("TRUE")));
   EXPECT_EQ(false, convert::to<bool>("false"));
-  EXPECT_EQ(false, convert::to<bool>(std::string("False")));
-  EXPECT_EQ(false, convert::to<bool>(std::string("FALSE")));
-  
+  EXPECT_EQ(false, convert::to<bool>(std::string{"False"}));
+  EXPECT_EQ(false, convert::to<bool>(falseStr));
+
   EXPECT_THROW(convert::to<bool>(std::string("FALSEE")), std::invalid_argument);
   EXPECT_THROW(convert::to<bool>("FALSE "), std::invalid_argument);
 }
@@ -59,7 +61,6 @@ TEST(Convert_to_floating_point, from_string)
   EXPECT_THROW(convert::to<float>(std::string("6543 654")), std::invalid_argument);
   EXPECT_THROW(convert::to<float>(std::string("-+6543.951")), std::invalid_argument);
 }
-
 
 int main(int argc, char **argv)
 {
