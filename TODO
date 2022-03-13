@@ -6,5 +6,5 @@ Todo:
    ✔ correct floating point precision issue @done(22-03-07 22:37)
    ✔ Handel error case in strtol, strtoll, strtof, strtol, strtold @done(22-03-12 19:32)
    ✔ Add more test on remaining functions @done(22-03-12 19:38)
-   ☐ Add known limits section to README file
+   ✔ Add known limits section to README file @done(22-03-13 14:28)
    ☐ Check for standard version and make use of available new functions
