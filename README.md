@@ -1,6 +1,22 @@
 # Project
-A header only templated functions to convertor basice types to/from std::string
+A header only templated functions to convert basice types to and from std::string and char array.
 The purpose of this project is to provide boost:lexical_cast like functionality, using C++ standard functions such as std::stoi, stof, stoul, std::to_string, etc.
+
+# Known behavior
+This projects uses standard functions to perform conversions. That's why it behaves mainly as such the standard functions do.
+More on the standard functions behavior could be found in the following links:
+* [std::stoi, std::stol, std::stoll](https://en.cppreference.com/w/cpp/string/basic_string/stol)
+* [std::stoul, std::stoull](https://en.cppreference.com/w/cpp/string/basic_string/stoul)
+* [std::stof, std::stod, std::stold](https://en.cppreference.com/w/cpp/string/basic_string/stof)
+* [std::strtol, std::strtoll](https://en.cppreference.com/w/cpp/string/byte/strtol)
+* [std::strtoul, std::strtoull](https://en.cppreference.com/w/cpp/string/byte/strtoul)
+* [std::to_string](https://en.cppreference.com/w/cpp/string/basic_string/to_string)
+
+In short, here are a list of the known behavior: 
+* String to numeric conversions will discards any whitespace characters until the first non-whitespace character is found in the given string.
+* If no conversion is possible std::invalid_argument will throw.
+* if the converted value would fall out of the range of the result type std::out_of_range will throw.
+
 
 # Requirment
 * GTest required for testing
