@@ -1,6 +1,7 @@
 #include <boost/lexical_cast.hpp>
 #include <type_conversion.hpp>
 #include <benchmark/benchmark.h>
+#include "foo_to_from_string.hpp"
 
 static const int numInt{32136763};
 static const double numDouble{687312.654354};
@@ -129,4 +130,13 @@ static void BM_std_bool_to_string(benchmark::State &state)
 
 BENCHMARK(BM_LexicalCast_bool_to_string);
 BENCHMARK(BM_std_bool_to_string);
+
+
+BENCHMARK(to_string_boost);
+BENCHMARK(to_string_std);
+
+BENCHMARK(from_string_boost);
+BENCHMARK(from_string_std);
+
+
 BENCHMARK_MAIN();
